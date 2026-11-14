@@ -3,8 +3,10 @@
 set -euo pipefail
 
 # ---- input / output (paths relative to the repo) ----
+RUN_ID="paratrimastix_pilot"
 INPUT="test_input/paratrimastix_pilot/pilot_100.fasta"
 OUTPUT="test_output/paratrimastix_pilot"
+# RUN_ID="paratrimastix_full"
 # INPUT="test_input/paratrimastix_full/Paratrimastix_pyriformis_predicted_proteome_benchmark.fasta"
 # OUTPUT="test_output/paratrimastix_full"
 source utils/time_check.sh
