@@ -11,8 +11,8 @@ OUTPUT="test_output/paratrimastix_pilot"
 # OUTPUT="test_output/paratrimastix_full"
 source utils/time_check.sh
 
-trap 'echo "[$(current_time)] ERROR: script exited unexpectedly (exit code $?, line ${LINENO})"' ERR
-trap 'echo "[$(current_time)] script finished (exit code $?)"' EXIT
+trap 'rc=$?; echo "[$(current_time)] ERROR: script exited unexpectedly (exit code ${rc}, line ${LINENO})"' ERR
+trap 'rc=$?; echo "[$(current_time)] script finished (exit code ${rc})"' EXIT
 
 # Run a command inside the CoMR container, from the repo folder (mounted at /opt/CoMR).
 # NR is not mounted: runs use enable_nr=false.

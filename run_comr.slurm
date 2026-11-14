@@ -8,7 +8,7 @@
 #SBATCH -o /proj/uppmax2026-1-284/private/dip/CoMR-dip/log/%x.%j.out
 #SBATCH -e /proj/uppmax2026-1-284/private/dip/CoMR-dip/log/%x.%j.err
 
-# Run CoMR (NR disabled). INPUT/OUTPUT are set in utils/config.sh.
+# Run CoMR (NR disabled). RUN_ID/INPUT/OUTPUT are set in utils/config.sh.
 # Submit: sbatch run_comr.slurm
 
 cd /proj/uppmax2026-1-284/private/dip/CoMR-dip
@@ -20,11 +20,11 @@ mkdir -p "${OUTPUT}" .inline_cache
 echo "[$(current_time)] CoMR started: ${INPUT} ($(grep -c '^>' "${INPUT}") sequences) -> ${OUTPUT}"
 T0=$(date +%s)
 
-# Keep going on failure so the timing report still gets written.
+# Full paths inside the container: CoMR runs some tools from inside the output folder.
 RC=0
-comr_exec snakemake --cores "${CORES}" --printshellcmds \
+comr_exec snakemake --cores "${CORES}" \
     --configfile config/config_runtime.yaml \
-    --config fasta="${INPUT}" output_dir="${OUTPUT}" enable_nr=false \
+    --config fasta="/opt/CoMR/${INPUT}" output_dir="/opt/CoMR/${OUTPUT}" enable_nr=false \
     || RC=$?
 echo "[$(current_time)] snakemake finished, exit code ${RC} ($(elapsed_time "${T0}"))"
 
