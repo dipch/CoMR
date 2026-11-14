@@ -295,6 +295,8 @@ rule Fasta_format:
     output:
         output1=_output_path("00_data_format_{FASTA}/{FASTA}_CoMR_indexed.fasta"),
         output2=_output_path("00_data_format_{FASTA}/{FASTA}_index_mapping.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Fasta_format.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_data_index.log")
     script:
@@ -306,6 +308,8 @@ rule Metstart:
         _output_path("00_data_format_{FASTA}/{FASTA}_CoMR_indexed.fasta")
     output:
         _output_path("00_data_format_{FASTA}/{FASTA}_CoMR_metstart.fasta")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Metstart.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_data_process.log")
     script:
@@ -319,6 +323,8 @@ rule Targetp:
     output:
         output1=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_targetp.csv"),
         output2=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_summary.targetp2")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Targetp.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_and_parse_targetp.log")
     params:
@@ -335,6 +341,8 @@ rule Mitofates:
     output:
         output1=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_mitofates.csv"),
         output2=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_summary.mitofates")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Mitofates.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_and_parse_mitofates.log")
     params:
@@ -350,6 +358,8 @@ rule Mitoprot:
     output:
         output1=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_mitoprot.csv"),
         output2=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_summary.mitoprot")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Mitoprot.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_and_parse_mitoprot.log")
     params:
@@ -366,6 +376,8 @@ rule Deepmito:
     output:
         output1=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_deepmito.csv"),
         output2=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_summary.deepmito")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Deepmito.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_and_parse_deepmito.log")
     params:
@@ -381,6 +393,8 @@ rule HMMscan:
         _output_path("00_data_format_{FASTA}/{FASTA}_CoMR_indexed.fasta")
     output:
         _output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_hmmscan.out")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/HMMscan.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_hmm.log")
     params:
@@ -401,6 +415,8 @@ rule SubtractiveDB_blastp:
     output:
         mito_output=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_MitoDB.out"),
         sub_output=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_SubstractiveDB.out")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/SubtractiveDB_blastp.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_DB.log")
     params:
@@ -419,6 +435,8 @@ rule CustomDB_blastp:
         _output_path("00_data_format_{FASTA}/{FASTA}_CoMR_indexed.fasta")
     output:
         _output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_CustomDB.out")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/CustomDB_blastp.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_customDB.log")
     params:
@@ -435,6 +453,8 @@ rule HMM_parse:
 
     output:
         csv=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_hmmscan.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/HMM_parse.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_parse_hmm.log")
     script:
@@ -448,6 +468,8 @@ rule SubtractiveDB_parse:
         _output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_SubstractiveDB.out")
     output:
         _output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_DB.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/SubtractiveDB_parse.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_parse_DB.log")
     script:
@@ -459,6 +481,8 @@ rule CustomDB_parse:
         _output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_CustomDB.out")
     output:
         _output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_CustomDB.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/CustomDB_parse.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_parse_CustomDB.log")
     script:
@@ -474,6 +498,8 @@ rule NR_blastp:
     output:
         output_file=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_nr.out"),
         taxonomy_output=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_nr_taxonomy.tsv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/NR_blastp.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_search_nr.log")
     params:
@@ -496,6 +522,8 @@ rule NR_parse:
         taxonomy_output=_output_path("01_analysis_original_{FASTA}/{FASTA}_CoMR_nr_taxonomy.tsv")
     output:
         output_file=_output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_nr.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/NR_parse.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_parse_nr.log")
     params:
@@ -520,6 +548,8 @@ rule HMM_align:
         threads=config["misc"].get("threads", 1),
         align_threads=config["misc"].get("align_threads_per_job", 1),
         min_trimmed_residues=config["misc"].get("min_trimmed_residues", 1)
+    benchmark:
+        _output_path("benchmarks_{FASTA}/HMM_align.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_align.log")
     script:
@@ -536,6 +566,8 @@ rule HMM_trees:
     params:
         threads=config["misc"].get("threads", 1),
         tree_threads=config["misc"].get("tree_threads_per_job", 1)
+    benchmark:
+        _output_path("benchmarks_{FASTA}/HMM_trees.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_trees.log")
     script:
@@ -551,6 +583,8 @@ rule Trees_parse:
         trees_dir=_output_path("04_trees_{FASTA}")
     output:
         _output_path("02_analysis_parsed_{FASTA}/{FASTA}_CoMR_parse_trees.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Trees_parse.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_parse_trees.log")
     script:
@@ -563,6 +597,8 @@ rule Results:
         lambda wildcards: _results_inputs(wildcards.FASTA)
     output:
         output_file = _output_path("05_CoMR_{FASTA}/{FASTA}_CoMR.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/Results.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_table.log")
     script:
@@ -576,6 +612,8 @@ rule CoMR_scores:
         _output_path("05_CoMR_{FASTA}/{FASTA}_CoMR.csv")
     output:
         _output_path("05_CoMR_{FASTA}/{FASTA}_CoMR_scored.csv")
+    benchmark:
+        _output_path("benchmarks_{FASTA}/CoMR_scores.tsv")
     log:
         _output_path("logs_{FASTA}/{FASTA}_CoMR_scored.log")
     params:

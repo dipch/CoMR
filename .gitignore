@@ -30,3 +30,9 @@ scripts/__pycache__/
 *.MFout
 extra_download/
 .DS_Store*
+
+# timing / run logs
+benchmarks*/
+test_output/
+log/*
+!log/.gitkeep
